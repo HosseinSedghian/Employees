@@ -5,6 +5,5 @@ namespace Employees.Controllers
     [Route("/Employees")]
     public class EmployeesController : ControllerBase
     {
-
     }
 }
