@@ -1,4 +1,4 @@
-﻿namespace Employees.Services.Classes
+﻿namespace Employees.Services
 {
     public class EmployeeService
     {
