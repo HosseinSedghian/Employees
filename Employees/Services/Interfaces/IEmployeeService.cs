@@ -1,4 +1,4 @@
-﻿namespace Employees.Services
+﻿namespace Employees.Services.Interfaces
 {
     public interface IEmployeeService
     {
