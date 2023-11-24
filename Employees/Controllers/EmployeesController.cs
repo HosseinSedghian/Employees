@@ -15,7 +15,7 @@ namespace Employees.Controllers
         {
             _employeeService = employeeService;
         }
-
+        //----------------------------
         [HttpPost]
         public IActionResult CreateEmployee(EmployeeRequest request)
         {
@@ -38,8 +38,7 @@ namespace Employees.Controllers
         [HttpPut("/{id:int}")]
         public IActionResult UpdateEmployee(int id, [FromBody] JsonElement json)
         {
-            //Employee employee = _employeeService.Get(id);
-            Employee employee = new Employee() { Id = 1, Name = "Hossein", Family = "Sedghian", Email = "aa@bb", Password = "1234"};
+            Employee employee = _employeeService.Get(id);
             if (employee == null)
             {
                 var response = new { Response = $"Employee with Id {id} does not exist" };
