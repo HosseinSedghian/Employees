@@ -1,15 +1,13 @@
-﻿namespace Employees.Models
+﻿using System.ComponentModel.DataAnnotations;
+namespace Employees.Models
 {
     public class Employee
     {
-        public Employee()
-        {
-
-        }
+        [Key]
         public int Id { get; set; }
-        public string? Name { get; set; }
-        public string? Family { get; set; }
-        public string? Email { get; set; }
-        public string? Password { get; set; }
+        public string Name { get; set; } = null;
+        public string Family { get; set; } = null;
+        public string Email { get; set; } = null;
+        public string Password { get; set; } = null;
     }
 }
