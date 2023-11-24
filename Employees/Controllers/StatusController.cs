@@ -9,8 +9,7 @@ namespace Employees.Controllers
         [HttpGet]
         public IActionResult GetStatus()
         {
-            Status status = new Status();
-            status.APIStatus = "OK";
+            var status = new { Status = "OK" };
             return Ok(status);
         }
     }
