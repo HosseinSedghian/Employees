@@ -10,7 +10,17 @@ namespace Employees.Services
             throw new NotImplementedException();
         }
 
+        public void Delete(Employee request)
+        {
+            throw new NotImplementedException();
+        }
+
         public Employee Get(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(Employee request)
         {
             throw new NotImplementedException();
         }
