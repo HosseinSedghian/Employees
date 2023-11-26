@@ -1,26 +1,30 @@
 ﻿using Employees.Contracts;
 using Employees.Models;
-
+using Employees.Data;
 namespace Employees.Services
 {
     public class EmployeeService : IEmployeeService
     {
-        public Employee Create(EmployeeRequest request)
+        EmployeeContext _context = new EmployeeContext();
+        public void Create(ref Employee employee)
         {
-            throw new NotImplementedException();
+            _context.Employees.Add(employee);
+            _context.SaveChanges();
         }
         public Employee Get(int id)
         {
-            throw new NotImplementedException();
+            return _context.Employees.SingleOrDefault(e => e.Id == id)!;
         }
         public void Update(Employee request)
         {
-            throw new NotImplementedException();
+            _context.Employees.Update(request);
+            _context.SaveChanges();
         }
 
         public void Delete(Employee request)
         {
-            throw new NotImplementedException();
+            _context.Employees.Remove(request);
+            _context.SaveChanges();
         }
     }
 }

@@ -7,7 +7,7 @@ using Employees.Models;
 namespace Employees.Controllers
 {
     [ApiController]
-    [Route("/Employees")]
+    [Route("Employees")]
     public class EmployeesController : ControllerBase
     {
         private readonly IEmployeeService _employeeService;
@@ -19,11 +19,12 @@ namespace Employees.Controllers
         [HttpPost]
         public IActionResult CreateEmployee(EmployeeRequest request)
         {
-            Employee employee = _employeeService.Create(request);
+            Employee employee = MapRequestToEmployee(request);
+            _employeeService.Create(ref employee);
             return Ok(MapEmployeeToResponse(employee));
         }
 
-        [HttpGet("/{id:int}")]
+        [HttpGet("{id:int}")]
         public IActionResult GetEmployee(int id)
         {
             Employee employee = _employeeService.Get(id);
@@ -35,7 +36,7 @@ namespace Employees.Controllers
             return Ok(MapEmployeeToResponse(employee));
         }
 
-        [HttpPut("/{id:int}")]
+        [HttpPut("{id:int}")]
         public IActionResult UpdateEmployee(int id, [FromBody] JsonElement json)
         {
             Employee employee = _employeeService.Get(id);
@@ -50,7 +51,7 @@ namespace Employees.Controllers
             return Ok(MapEmployeeToResponse(employee));
         }
 
-        [HttpDelete("/{id:int}")]
+        [HttpDelete("{id:int}")]
         public IActionResult DeleteEmployee(int id)
         {
             Employee employee = _employeeService.Get(id);
@@ -64,5 +65,7 @@ namespace Employees.Controllers
         }
         private EmployeeResponse MapEmployeeToResponse(Employee employee) =>
             new EmployeeResponse(employee.Id, employee.Name, employee.Family, employee.Email);
+        private Employee MapRequestToEmployee(EmployeeRequest request) =>
+            new Employee() { Name = request.Name, Family = request.Family, Email = request.Email, Password = request.Password};
     }
 }
