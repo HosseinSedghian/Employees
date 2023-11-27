@@ -1,6 +1,7 @@
 ﻿using Employees.Contracts;
 using Employees.Models;
 using Employees.Data;
+
 namespace Employees.Services
 {
     public class EmployeeService : IEmployeeService
@@ -24,6 +25,20 @@ namespace Employees.Services
         public void Delete(Employee request)
         {
             _context.Employees.Remove(request);
+            _context.SaveChanges();
+        }
+
+        public List<Employee> GetAll()
+        {
+            return _context.Employees.Select(e => e).ToList();
+        }
+
+        public void DeleteAll()
+        {
+            foreach (var employee in _context.Employees)
+            {
+                _context.Employees.Remove(employee);
+            }
             _context.SaveChanges();
         }
     }

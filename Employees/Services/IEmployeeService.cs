@@ -9,5 +9,7 @@ namespace Employees.Services
         Employee Get(int id);
         void Update(Employee request);
         void Delete(Employee request);
+        List<Employee> GetAll();
+        void DeleteAll();
     }
 }

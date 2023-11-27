@@ -63,6 +63,24 @@ namespace Employees.Controllers
             _employeeService.Delete(employee);
             return NoContent();
         }
+
+        [HttpGet]
+        public IActionResult GetAllEmployees()
+        {
+            List<EmployeeResponse> allemployees = _employeeService.GetAll().Select(e => MapEmployeeToResponse(e)).ToList();
+            if (allemployees.Count == 0)
+            {
+                var response = new { Response = "The employees table is empty" };
+                return NotFound(response);
+            }
+            return Ok(allemployees);
+        }
+        public IActionResult DeleteAllEmployees()
+        {
+            _employeeService.DeleteAll();
+            var response = new { Response = "The employees table is empty" };
+            return Ok(response);
+        }
         private EmployeeResponse MapEmployeeToResponse(Employee employee) =>
             new EmployeeResponse(employee.Id, employee.Name, employee.Family, employee.Email);
         private Employee MapRequestToEmployee(EmployeeRequest request) =>
