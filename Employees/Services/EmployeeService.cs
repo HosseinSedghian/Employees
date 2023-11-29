@@ -6,7 +6,11 @@ namespace Employees.Services
 {
     public class EmployeeService : IEmployeeService
     {
-        EmployeeContext _context = new EmployeeContext();
+        private readonly EmployeeContext _context;
+        public EmployeeService(EmployeeContext context)
+        {
+            _context = context;
+        }
         public void Create(ref Employee employee)
         {
             _context.Employees.Add(employee);

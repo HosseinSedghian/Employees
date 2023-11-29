@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  employees:
+    image: ${DOCKER_REGISTRY-}employees
+    build:
+      context: .
+      dockerfile: Employees/Dockerfile
