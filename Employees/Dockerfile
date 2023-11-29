@@ -8,6 +8,7 @@ EXPOSE 8080
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
+RUN dotnet tool install --global dotnet-ef
 COPY ["Employees/Employees.csproj", "Employees/"]
 RUN dotnet restore "./Employees/./Employees.csproj"
 COPY . .

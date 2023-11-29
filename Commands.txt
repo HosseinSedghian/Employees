@@ -1,0 +1,3 @@
+docker run -d -p 1433:1433 --network EmployeesAPI -v D:\Amin-Ray\WebAPI\Employees\SQLBackup:/var/opt/mssql/data -e ACCEPT_EULA=Y -e SA_PASSWORD=HS1212hs --name mysqlserverfast mcr.microsoft.com/mssql/server:latest
+--------------------------------------
+docker run -it --rm -p 8080:8080 --network EmployeesAPI -e DB_SERVER=mysqlserverfast -e DB_NAME=Employees -e USER_ID=sa -e PASSWORD=HS1212hs hosseinsedghian/employeesapi:v2
