@@ -8,6 +8,7 @@ namespace Employees
     {
         public static void Main(string[] args)
         {
+            Thread.Sleep(20000);
             var builder = WebApplication.CreateBuilder(args);
             {
                 builder.Services.AddControllers();
@@ -29,7 +30,6 @@ namespace Employees
                 app.MapControllers();
                 using (var scope = app.Services.CreateScope())
                 {
-                    Thread.Sleep(20000);
                     var dbContext = scope.ServiceProvider.GetRequiredService<EmployeeContext>();
                     dbContext.Database.Migrate();
                 }

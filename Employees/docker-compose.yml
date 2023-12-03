@@ -14,7 +14,7 @@ services:
         - D:\Amin-Ray\WebAPI\Employees\SQLBackup:/var/opt/mssql/data
   
   webapi:
-    image: hosseinsedghian/employeesapi:v2
+    image: hosseinsedghian/employeesapi:v4
     ports:
         - 8080:8080
     environment:
