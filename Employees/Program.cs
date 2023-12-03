@@ -29,6 +29,7 @@ namespace Employees
                 app.MapControllers();
                 using (var scope = app.Services.CreateScope())
                 {
+                    Thread.Sleep(20000);
                     var dbContext = scope.ServiceProvider.GetRequiredService<EmployeeContext>();
                     dbContext.Database.Migrate();
                 }
