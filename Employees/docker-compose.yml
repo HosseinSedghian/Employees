@@ -1,32 +1,28 @@
 ﻿version: "3.8"
-
 services:
   sqldb:
     image: mcr.microsoft.com/mssql/server:2022-latest
-    ports:
-        - 1433:1433
+    expose:
+        - '1433'
     environment:
         - ACCEPT_EULA=Y
         - SA_PASSWORD=HS1212hs
     networks:
-        - employeesapi
+        - my-main-net
     volumes:
-        - D:\Amin-Ray\WebAPI\Employees\SQLBackup:/var/opt/mssql/data
+        - /home/hosseinsedghian/employees/sql/data:/var/opt/mssql/data
   
   webapi:
     image: hosseinsedghian/employeesapi:v4
-    ports:
-        - 8080:8080
+    expose:
+        - '12080'
     environment:
         - DB_SERVER=sqldb
         - DB_NAME=Employees
         - USER_ID=sa
         - PASSWORD=HS1212hs
     networks:
-        - employeesapi
+        - my-main-net
     depends_on:
         - sqldb
     restart: always
-networks:
-  employeesapi:
-    driver: bridge
