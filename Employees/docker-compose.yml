@@ -3,7 +3,6 @@ services:
   sqldb:
    image: mcr.microsoft.com/mssql/server:2019-latest
    container_name: 'sqldb'
-   command: bash -c "chown 10001:0 /var/opt/sqlserver/data && chown 10001:0 /var/opt/sqlserver/log"
    expose:
    - '1433' 
    environment:
@@ -19,6 +18,21 @@ services:
     - sqldata:/var/opt/sqlserver/data
     - sqllog:/var/opt/sqlserver/log
     - sqlbackup:/var/opt/sqlserver/backup
+  webapi:
+    image: hosseinsedghian/employeesapi:v4
+    container_name: 'webapi'
+    expose:
+        - '8080'
+    environment:
+        - DB_SERVER=sqldb
+        - DB_NAME=Employees
+        - USER_ID=sa
+        - PASSWORD=HS1212hs
+    networks:
+        - my-main-net
+    depends_on:
+        - sqldb
+    restart: always
 networks:
   my-main-net:
     external: true
