@@ -6,10 +6,10 @@
       "launchUrl": "weatherforecast",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "DB_SERVER": "server",
-        "DB_NAME": "dbname",
-        "USER_ID": "userId",
-        "PASSWORD": "pass"
+        "DB_SERVER": "127.0.0.1,1433",
+        "DB_NAME": "Employees",
+        "USER_ID": "sa",
+        "PASSWORD": "HS1212hs"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5014"
