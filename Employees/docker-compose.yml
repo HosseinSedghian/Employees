@@ -3,7 +3,7 @@ services:
   sqldb:
    image: mcr.microsoft.com/mssql/server:2019-latest
    container_name: 'sqldb'
-   command: bash -c "chown 10001:0 /var/opt/sqlserver/data && /var/opt/sqlserver/log"
+   command: bash -c "chown 10001:0 /var/opt/sqlserver/data && chown 10001:0 /var/opt/sqlserver/log"
    expose:
    - '1433' 
    environment:
