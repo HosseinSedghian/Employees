@@ -1,0 +1,41 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sqldb-deployment
+  labels:
+    app: sqldb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sqldb
+  template:
+    metadata:
+      labels:
+        app: sqldb
+    spec:
+      containers:
+      - name: sqldb
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        ports:
+        - containerPort: 1433
+        env:
+        - name: ACCEPT_EULA
+          value: "Y"
+        - name: SA_PASSWORD
+          valueFrom:
+            secretKeyRef:
+                name: sql-secret
+                key: SA_PASSWORD
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sqldb-service
+spec:
+  selector:
+    app: sqldb
+  ports:
+    - protocol: TCP
+      port: 1433
+      targetPort: 1433

@@ -1,0 +1,7 @@
+﻿apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sql-config
+data:
+    DB_SERVER: sqldb-service
+    DB_NAME: Employees
